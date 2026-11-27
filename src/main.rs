@@ -31,7 +31,7 @@ fn subtract_one_day(timestamp: Option<String>) -> Option<String> {
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    println!("Hello, world!");
+    println!("Initializing...");
 
     let yaml = std::fs::read_to_string("config/config.yaml")?;
     let mut config: Config = serde_yaml_ng::from_str(&yaml)?;
@@ -61,8 +61,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             )?;
 
             for asset in &response.assets.items {
-                println!("{}", asset.id);
-
                 if latest.as_ref().is_none_or(|t| {
                     asset.created_at.as_str() > t.as_str()
                 }) {
@@ -83,14 +81,21 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 &ids,
             )?;
 
+            let total = results.len();
+            let mut added = 0;
+
             for result in results {
-                if !result.success && result.error.as_deref() != Some("duplicate") {
+                if result.success {
+                    added += 1;
+                } else if result.error.as_deref() != Some("duplicate") {
                     return Err(format!(
                         "Failed to add asset {}: {:?}",
                         result.id, result.error
                     ).into());
                 }
             }
+
+            println!("{added}/{total} added to album");
 
             cursor = response.assets.next_cursor;
 
