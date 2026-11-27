@@ -1,6 +1,8 @@
-serverUrl: http://127.0.0.1:2283
+serverUrl: http://immich-server:2283
 rules:
     - albumId: ALBUM-UUID
       personId: PERSON-UUID
       apiKey: API-KEY
-      lastCreatedAt: "DELETE_THIS_ROW_TO_START_FROM_SCRATCH"
+    - albumId: ALBUM-UUID
+      personId: PERSON-UUID-IN-API-KEY-2
+      apiKey: API-KEY-2

@@ -16,3 +16,23 @@ make run
 
 
 ### Example Docker Compose
+
+```
+services:
+  immich-server:
+    container_name: immich_server
+    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
+    ... (Your immich config)
+
+  immich-person-to-album:
+    image: ghcr.io/ezyw/immich-person-to-album:latest
+    volumes:
+      - ./config:/app/config:Z
+    restart: "no"
+    
+networks:
+  default:
+  proxy:
+    external: true
+```
+Then ask chatgpt to do some systemd magic and call this when appropriate
