@@ -33,7 +33,7 @@ fn subtract_one_day(timestamp: Option<String>) -> Option<String> {
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("Hello, world!");
 
-    let yaml = std::fs::read_to_string("config.yaml")?;
+    let yaml = std::fs::read_to_string("config/config.yaml")?;
     let mut config: Config = serde_yaml_ng::from_str(&yaml)?;
 
     println!("Server: {}", config.server_url);
@@ -108,8 +108,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     };
     let updated_yaml = serde_saphyr::to_string_with_options(&config, options)?;
     // let updated_yaml = serde_yaml_ng::to_string(&config)?;
-    std::fs::write("config.yaml.tmp", updated_yaml)?;
-    std::fs::rename("config.yaml.tmp", "config.yaml")?;
+    std::fs::write("config/config.yaml.tmp", updated_yaml)?;
+    std::fs::rename("config/config.yaml.tmp", "config/config.yaml")?;
 
     Ok(())
 }
