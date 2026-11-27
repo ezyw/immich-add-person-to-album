@@ -1,0 +1,6 @@
+serverUrl: http://127.0.0.1:2283
+rules:
+    - albumId: ALBUM-UUID
+      personId: PERSON-UUID
+      apiKey: API-KEY
+      lastCreatedAt: "DELETE_THIS_ROW_TO_START_FROM_SCRATCH"

@@ -1,0 +1,12 @@
+[package]
+name = "ImmichPersonToAlbum"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_yaml_ng = "0.10.0"
+serde_json = "1.0.154"
+reqwest = { version = "0.13.5", features = ["blocking", "json"] }
+chrono = "0.4.45"
+serde-saphyr = "3.0.0-rc.1"
